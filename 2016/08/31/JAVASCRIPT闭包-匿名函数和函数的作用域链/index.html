@@ -1,0 +1,566 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文介绍JavaScript中的匿名函数，以及函数的作用域链，并通过图解的方式详细分析函数的作用域链的内存模型。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVASCRIPT闭包-匿名函数和函数的作用域链">
+<meta property="og:url" content="http://yoursite.com/2016/08/31/JAVASCRIPT闭包-匿名函数和函数的作用域链/index.html">
+<meta property="og:site_name" content="杨思恒的博客">
+<meta property="og:description" content="本文介绍JavaScript中的匿名函数，以及函数的作用域链，并通过图解的方式详细分析函数的作用域链的内存模型。">
+<meta property="og:image" content="http://yoursite.com/source/image/2016083101.png">
+<meta property="og:image" content="http://yoursite.com/source/image/2016083102.png">
+<meta property="og:updated_time" content="2016-08-31T12:01:32.005Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVASCRIPT闭包-匿名函数和函数的作用域链">
+<meta name="twitter:description" content="本文介绍JavaScript中的匿名函数，以及函数的作用域链，并通过图解的方式详细分析函数的作用域链的内存模型。">
+<meta name="twitter:image" content="http://yoursite.com/source/image/2016083101.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/31/JAVASCRIPT闭包-匿名函数和函数的作用域链/"/>
+
+  <title> JAVASCRIPT闭包-匿名函数和函数的作用域链 | 杨思恒的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨思恒的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JAVASCRIPT闭包-匿名函数和函数的作用域链
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-31T19:21:20+08:00" content="2016-08-31">
+              2016-08-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文介绍JavaScript中的匿名函数，以及函数的作用域链，并通过图解的方式详细分析函数的作用域链的内存模型。<br> <a id="more"></a> </p>
+<h1 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h1><p>在理解JavaScript的闭包之前，我们有必要了解一下JavaScript中函数的执行顺序。我们前面说过，定义函数有多种方式，其中最常用的是下面的两种方式。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/* 定义函数的第一种方式 */</div><div class="line">function fn1()&#123;</div><div class="line">  alert(&quot;fn1&quot;);</div><div class="line">&#125;</div><div class="line"> </div><div class="line">/* 定义函数的第二种方式 */</div><div class="line">var fn2 = function()&#123;</div><div class="line">  alert(&quot;fn2&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>对于第一种定义函数的方式，我们称为函数声明。以这种方式声明的函数会在函数执行之前被加载到内存中，所以无论是在函数定义之前，还是在函数定义之后调用这个函数都不会报错。<br>对于第二种定义函数的方式，我们称为函数表达式。以这种方式定义的函数会先在内存中创建一块区域，之后通过一个fn2的变量来指向这块区域，这块区域的函数开始是没有名称的，这种函数就叫做匿名函数，也叫作拉姆达（lambda）函数。如果我们在创建函数之前调用fn2()，那么程序会报错。</p>
+</blockquote>
+<h1 id="函数的作用域链"><a href="#函数的作用域链" class="headerlink" title="函数的作用域链"></a>函数的作用域链</h1><blockquote>
+<p>在JavaScript中，当进行函数的调用时，会创建一个执行环境，并为每一个函数增加一个属性SCOPE,通过这个属性来指向一块内存，这块内存中包含有所有上下文的变量。当在某个函数中调用了新函数之后，新函数依然会有一个作用域来执行原来的函数的SCOPE和自己新增加的SCOPE，这样就形成了一个链式结构，这就是JavaScript中的作用域链。<br>每一个函数都有自己的执行环境。当执行流进入一个函数时，函数的环境就会被推入一个环境栈中。在函数执行完毕后，栈将它的环境弹出，把控制权交回给原来的执行环境。<br>作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问。在作用域链的最前端始终是当前执行的代码所在的环境的变量对象。作用域链的下一个变量对象来自于包含环境，再下一个变量对象又来自于下一个包含环境，一直延续到全局执行环境。全局执行环境的变量对象始终是作用域链的最后一个对象。<br>上面的这几段话是什么意思呢？我们还是通过具体的例子和内存模型分析来讲解。先看下面的例子，下面的这个例子完成的功能是简单的交换color属性的颜色：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 定义一个颜色属性</div><div class="line">var color = &quot;red&quot;;</div><div class="line"> </div><div class="line">// 定义显示颜色的方法</div><div class="line">var showColor = function()&#123;</div><div class="line">  console.info(this.color);</div><div class="line">&#125; </div><div class="line"> </div><div class="line">/* 定义一个交换颜色的函数 */</div><div class="line">function changeColor()&#123;</div><div class="line">  var anotherColor = &quot;blue&quot;;</div><div class="line">  function swapColor()&#123;</div><div class="line">    var tempColor = anotherColor;</div><div class="line">    anotherColor = color;</div><div class="line">    color = tempColor;</div><div class="line">  &#125;</div><div class="line">  swapColor();</div><div class="line">&#125;</div><div class="line"> </div><div class="line">// 调用交换颜色的函数来改变颜色</div><div class="line">changeColor();</div><div class="line"> </div><div class="line">// 调用showColor()方法</div><div class="line">showColor();</div></pre></td></tr></table></figure>
+<blockquote>
+<p>我们来看上面的一段代码，代码中首先定义了一个颜色变量color，和一个用于打印颜色的方法showColor()。然后又定义了一个用于交换颜色的函数changeColor()，它的作用是将全局作用域中的颜色“red”修改为“blue”。注意在这个函数中是通过另外一个函数swapColor()来实现交换的。<br>再接下来，我们开始执行changeColor()函数。上面说到，js在执行函数的时候，会创建一个执行环境，并为每一个函数增加一个属性SCOPE,通过这个属性来指向一块内存，这块内存中包含有所有上下文的变量。那么，在执行changeColor()函数的时候，内存模型应该如下图所示：<br><img src="/source/image/2016083101.png" alt="img"><br>函数的作用域链-1<br>图中蓝色部分是changeColor()函数的作用域链，由于changeColor()的执行上下文是window对象，所以它的作用域链的最高位指向的是全局作用域（golbal scope）。在我们的程序中，目前全局作用域中有color、showColor和changeColor这3个属性。<br>changeColor()作用域链的低位指向的是它自己的作用域。在changeColor()中，有anotherColor和swapColor2个属性。<br>接下来开始执行changeColor()函数，在函数内部又创建了一个swapColor()函数，创建之后立刻执行这个函数。此时的作用域链内存模型如下图所示：<br><img src="/source/image/2016083102.png" alt="img"><br>函数的作用域链-2<br>同样，swapColor的作用域链的最顶端指向的是全局作用域，下一级指向的是包含它的changeColor函数的作用域，最后才是指向自己的作用域。<br>接着，swapColor函数开始执行，第一代码是var tempColor = anotherColor，它首先会在自己的作用域中查找是否有tempColor属性，根据上面的图我们可以看到，在swapColor的作用域中存在tempColor属性，于是它把tempColor的值由“red”修改为“blue”。<br>第二句代码是anotherColor = color，首先它也是先在swapColor的作用域中查找anotherColor属性，发现没有找到，它就会通过作用域链到上一级的changeColor作用域中去查找，找到之后将anotherColor属性由“blue”修改为“red”。<br>第三句代码是color = tempColor，属性查找的方法相同，首先在自己的作用域中查找，没有找到的话到上一级的作用域去查找。最终会在全局作用域中找到color属性，于是它将全局作用域中的color属性由“red”修改为“blue”。最后，swapColor函数执行完毕之后，函数会被垃圾回收，同时changeColor函数也执行完毕，同样被垃圾回收。紧接着我们调用了showColor()方法，此时又会为该函数创建新的执行环境和作用域链。<br>在showColor的作用域链中有2个指向：顶层的全局作用域和它自己的作用域。在执行showColor函数的时候，它在自己的作用域中没有发现color属性，于是到上一级的全局作用域中查找，此时全局作用域中的color属性已经被修改为“blue”，所以程序最终会打印出的颜色是“blue”。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/16/hello-world/" rel="next" title="第一次博客之路">
+                <i class="fa fa-chevron-left"></i> 第一次博客之路
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.jpg"
+               alt="杨思恒" />
+          <p class="site-author-name" itemprop="name">杨思恒</p>
+          <p class="site-description motion-element" itemprop="description">我思，故我在！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#匿名函数"><span class="nav-number">1.</span> <span class="nav-text">匿名函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#函数的作用域链"><span class="nav-number">2.</span> <span class="nav-text">函数的作用域链</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨思恒</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
