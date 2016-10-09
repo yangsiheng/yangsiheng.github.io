@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度，lengthb求得是字节长度。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from dual;
-第一个SQL得到4，第二个得">
+<meta name="description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="20161008总结">
 <meta property="og:url" content="http://yoursite.com/2016/10/08/20161008总结/index.html">
 <meta property="og:site_name" content="杨思恒的博客">
-<meta property="og:description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度，lengthb求得是字节长度。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from dual;
-第一个SQL得到4，第二个得">
-<meta property="og:updated_time" content="2016-10-08T10:24:58.280Z">
+<meta property="og:description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from d">
+<meta property="og:updated_time" content="2016-10-09T03:42:48.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="20161008总结">
-<meta name="twitter:description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度，lengthb求得是字节长度。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from dual;
-第一个SQL得到4，第二个得">
+<meta name="twitter:description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from d">
 
 
 
@@ -281,8 +278,8 @@
       
         <p><br></p>
 <blockquote>
-<p>在oracle中，length()与lengthb()是有区别的，length求得是字符长度，lengthb求得是字节长度。可以根据此规矩用来判断是否是汉字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select length(&apos;星空学者&apos;) from dual; </div><div class="line">SQL&gt; select lengthb(&apos;星空学者&apos;) from dual;</div></pre></td></tr></table></figure></p>
-<p>第一个SQL得到4，第二个得到8。</p>
+<p>在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SQL&gt; select length(&apos;星空学者&apos;) from dual; </div><div class="line">SQL&gt; select lengthb(&apos;星空学者&apos;) from dual;</div></pre></td></tr></table></figure></p>
+<p>第一个SQL得到4，第二个得到8。<br>在Oracle中得到长度的函数，除了上述两个还有lengthc,length2,length4这三个函数，其中lengthc返回的是unicode字符长度（unicode characters），length2返回的是Code units，length4返回的是Code points。<br>参考：<br>1.<a href="http://docs.oracle.com/cd/B19306_01/server.102/b14200/functions076.htm" target="_blank" rel="external">http://docs.oracle.com/cd/B19306_01/server.102/b14200/functions076.htm</a><br>2.<a href="http://www.dba-oracle.com/t_lengthb_lengthc_length2_length4.htm" target="_blank" rel="external">http://www.dba-oracle.com/t_lengthb_lengthc_length2_length4.htm</a></p>
 </blockquote>
 
       
