@@ -238,6 +238,104 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/09/nls-database-parameters初探/" itemprop="url">
+                  nls_database_parameters初探
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-09T15:31:33+08:00" content="2016-10-09">
+              2016-10-09
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><br></p>
+<blockquote>
+<p>nls_database_parameters是PROPS$的一个视图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select * from nls_database_parameters;</div><div class="line">SELECT * FROM PROPS$;</div></pre></td></tr></table></figure></p>
+<p>修改nls_database_parameters系统配置(注意：此处要以sys,scott等超级管理员登陆，否则没权限)<br>update props$ set value$=’ZHS16GBK’ where name=’NLS_CHARACTERSET’</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/08/20161008总结/" itemprop="url">
                   20161008总结
                 </a>
@@ -379,14 +477,13 @@
 
       
         
-          <p><br/></p>
+          
+            <p><br></p>
 <blockquote>
-<p>费了一番力气，终于搭建好了我的博客。希望以后能更好的和更多技术同行人交流，探讨。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/16/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+<p>费了一番力气，终于搭建好了我的博客。希望以后能更好的和更多技术同行人交流，探讨。<br>子曰“学而不思则罔，思而不学则殆”，在信息大爆炸的今天，每个人无时无刻都在接收着大量的信息，对的错的都有。辨别信息，吸收有用的则成为区分人与人高低的关键，或许这就是博客对于我们技术工作者的好处，可以把接收到的知识思考、吸收、消化、运用。<br>路已经铺好，美好在远方，剩下的只有坚持和努力。加油！！大家共勉。</p>
+</blockquote>
+
+          
         
       
     </div>
@@ -454,7 +551,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
