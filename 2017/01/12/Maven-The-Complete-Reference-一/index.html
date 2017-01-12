@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Maven," />
 
 
 
@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="我思，故我在！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="杨思恒的博客">
-<meta property="og:url" content="http://yoursite.com/categories/心路历程/index.html">
+<meta name="description" content="今天读Maven: The Complete Reference第一章Introducing Apache Maven，收获如下：1)Maven 不仅仅是一个构建工具，还是一个项目管理工具。2)Maven 崇尚约定俗成大于配置，更多用约定俗成的结构来代替配置相关的目录。在maven project 中，源代码一般在${basedir}/src/main/java目录下；资源一般在${basedi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven: The Complete Reference(一)">
+<meta property="og:url" content="http://yoursite.com/2017/01/12/Maven-The-Complete-Reference-一/index.html">
 <meta property="og:site_name" content="杨思恒的博客">
-<meta property="og:description" content="我思，故我在！">
+<meta property="og:description" content="今天读Maven: The Complete Reference第一章Introducing Apache Maven，收获如下：1)Maven 不仅仅是一个构建工具，还是一个项目管理工具。2)Maven 崇尚约定俗成大于配置，更多用约定俗成的结构来代替配置相关的目录。在maven project 中，源代码一般在${basedir}/src/main/java目录下；资源一般在${basedi">
+<meta property="og:updated_time" content="2017-01-12T10:07:36.314Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杨思恒的博客">
-<meta name="twitter:description" content="我思，故我在！">
+<meta name="twitter:title" content="Maven: The Complete Reference(一)">
+<meta name="twitter:description" content="今天读Maven: The Complete Reference第一章Introducing Apache Maven，收获如下：1)Maven 不仅仅是一个构建工具，还是一个项目管理工具。2)Maven 崇尚约定俗成大于配置，更多用约定俗成的结构来代替配置相关的目录。在maven project 中，源代码一般在${basedir}/src/main/java目录下；资源一般在${basedi">
 
 
 
@@ -113,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/心路历程/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/01/12/Maven-The-Complete-Reference-一/"/>
 
-  <title> 分类: 心路历程 | 杨思恒的博客 </title>
+  <title> Maven: The Complete Reference(一) | 杨思恒的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,47 +225,143 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        心路历程
-        <small>分类</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Maven: The Complete Reference(一)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-12T18:03:05+08:00" content="2017-01-12">
+              2017-01-12
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index">
+                    <span itemprop="name">Diary</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <blockquote>
+<p>今天读Maven: The Complete Reference第一章Introducing Apache Maven，收获如下：<br>1)Maven 不仅仅是一个构建工具，还是一个项目管理工具。<br>2)Maven 崇尚约定俗成大于配置，更多用约定俗成的结构来代替配置相关的目录。在maven project 中，源代码一般在${basedir}/src/main/java目录下；资源一般在${basedir}/src/main/resources目录下；测试代码一般在${basedir}/src/test目录下；解析代码一般在${basedir}/target/classes目录下；并且一个项目一般生成一个jar文件，且jar文件一般在${basedir}/target目录下。<br>3)POM 是Project Object Model 的缩写。<br>4)mvn install 直接可以下载项目相应的jar包。</p>
+</blockquote>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/16/hello-world/" itemprop="url">
-              
-                <span itemprop="name">第一次博客之路</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-16T20:00:14+08:00"
-              content="2016-08-16" >
-          08-16
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Maven/" rel="tag">#Maven</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/01/JavaScript简单对象的创建/" rel="next" title="JavaScript简单对象的创建">
+                <i class="fa fa-chevron-left"></i> JavaScript简单对象的创建
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </section>
 
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -272,6 +369,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -291,8 +392,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/me.jpg"
@@ -362,6 +472,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -465,6 +586,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
