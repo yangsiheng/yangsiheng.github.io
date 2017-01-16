@@ -1,0 +1,640 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MySQL,Amoeba," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="MySQL数据库自身提供的主从复制功能可以方便的实现数据的多处自动备份，实现数据库的拓展。多个数据备份不仅可以加强数据的安全性，通过实现读写分离还能进一步提升数据库的负载性能。这样可以提高系统的性能，访问速度更加快速。
+原理MySQL之间数据复制的基础是二进制日志文件（binary log file）。一台MySQL数据库一旦启用二进制日志后，其作为master，它的数据库中所有操作都会以“事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Amoeba+MySQL实现数据库主从复制和读写分离">
+<meta property="og:url" content="http://yoursite.com/2017/01/16/Amoeba-MySQL实现数据库主从复制和读写分离/index.html">
+<meta property="og:site_name" content="杨思恒的博客">
+<meta property="og:description" content="MySQL数据库自身提供的主从复制功能可以方便的实现数据的多处自动备份，实现数据库的拓展。多个数据备份不仅可以加强数据的安全性，通过实现读写分离还能进一步提升数据库的负载性能。这样可以提高系统的性能，访问速度更加快速。
+原理MySQL之间数据复制的基础是二进制日志文件（binary log file）。一台MySQL数据库一旦启用二进制日志后，其作为master，它的数据库中所有操作都会以“事件">
+<meta property="og:updated_time" content="2017-01-16T07:44:06.397Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Amoeba+MySQL实现数据库主从复制和读写分离">
+<meta name="twitter:description" content="MySQL数据库自身提供的主从复制功能可以方便的实现数据的多处自动备份，实现数据库的拓展。多个数据备份不仅可以加强数据的安全性，通过实现读写分离还能进一步提升数据库的负载性能。这样可以提高系统的性能，访问速度更加快速。
+原理MySQL之间数据复制的基础是二进制日志文件（binary log file）。一台MySQL数据库一旦启用二进制日志后，其作为master，它的数据库中所有操作都会以“事件">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/01/16/Amoeba-MySQL实现数据库主从复制和读写分离/"/>
+
+  <title> Amoeba+MySQL实现数据库主从复制和读写分离 | 杨思恒的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">杨思恒的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Amoeba+MySQL实现数据库主从复制和读写分离
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-16T15:05:14+08:00" content="2017-01-16">
+              2017-01-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index">
+                    <span itemprop="name">Diary</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>MySQL数据库自身提供的主从复制功能可以方便的实现数据的多处自动备份，实现数据库的拓展。多个数据备份不仅可以加强数据的安全性，通过实现读写分离还能进一步提升数据库的负载性能。这样可以提高系统的性能，访问速度更加快速。</p>
+<h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><p>MySQL之间数据复制的基础是二进制日志文件（binary log file）。一台MySQL数据库一旦启用二进制日志后，其作为master，它的数据库中所有操作都会以“事件”的方式记录在二进制日志中，其他数据库作为slave通过一个I/O线程与主服务器保持通信，并监控master的二进制日志文件的变化，如果发现master二进制日志文件发生变化，则会把变化复制到自己的中继日志中，然后slave的一个SQL线程会把相关的“事件”执行到自己的数据库中，以此实现从数据库和主数据库的一致性，也就实现了主从复制。 <a id="more"></a> </p>
+<h1 id="实现MySQL主从复制需要进行的配置："><a href="#实现MySQL主从复制需要进行的配置：" class="headerlink" title="实现MySQL主从复制需要进行的配置："></a>实现MySQL主从复制需要进行的配置：</h1><p>主服务器：<br>开启二进制日志<br>配置唯一的server-id<br>获得master二进制日志文件名及位置<br>创建一个用于slave和master通信的用户账号<br>从服务器：<br>配置唯一的server-id<br>使用master分配的用户账号读取master二进制日志<br>启用slave服务</p>
+<h1 id="主从服务器准备："><a href="#主从服务器准备：" class="headerlink" title="主从服务器准备："></a>主从服务器准备：</h1><p>版本一致<br>初始化表，并在后台启动mysql<br>修改root的密码</p>
+<h1 id="修改主服务器master"><a href="#修改主服务器master" class="headerlink" title="修改主服务器master:"></a>修改主服务器master:</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">C:\ProgramData\MySQL\MySQL Server 5.7\my.ini</div><div class="line">    [mysqld]</div><div class="line">    log-bin=mysql-bin   //[必须]启用二进制日志</div><div class="line">    server-id=172      //[必须]服务器唯一ID，默认是1，一般取IP最后一段</div></pre></td></tr></table></figure>
+<h1 id="修改从服务器slave"><a href="#修改从服务器slave" class="headerlink" title="修改从服务器slave:"></a>修改从服务器slave:</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">C:\ProgramData\MySQL\MySQL Server 5.7\my.ini</div><div class="line">    [mysqld]</div><div class="line">    log-bin=mysql-bin   //[不是必须]启用二进制日志</div><div class="line">    server-id=168      //[必须]服务器唯一ID，默认是1，一般取IP最后一段</div></pre></td></tr></table></figure>
+<h1 id="重启两台服务器的mysql"><a href="#重启两台服务器的mysql" class="headerlink" title="重启两台服务器的mysql"></a>重启两台服务器的mysql</h1><p>略</p>
+<h1 id="在主服务器上建立帐户并授权slave"><a href="#在主服务器上建立帐户并授权slave" class="headerlink" title="在主服务器上建立帐户并授权slave:"></a>在主服务器上建立帐户并授权slave:</h1><p>#/usr/local/mysql/bin/mysql -uroot -proot<br>mysql&gt;GRANT REPLICATION SLAVE ON <em>.</em> to ‘yangtest’@’%’ identified by ‘yangtestpwd’; //一般不用root帐号，&ldquo;%&rdquo;表示所有客户端都可能连，只要帐号，密码正确，此处可用具体客户端IP代替，如192.168.145.226，加强安全。</p>
+<h1 id="登录主服务器的mysql，查询master的状态"><a href="#登录主服务器的mysql，查询master的状态" class="headerlink" title="登录主服务器的mysql，查询master的状态"></a>登录主服务器的mysql，查询master的状态</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  mysql&gt;show master status;</div><div class="line">   +------------------+----------+--------------+------------------+-------------------+</div><div class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set |</div><div class="line">+------------------+----------+--------------+------------------+-------------------+</div><div class="line">| mysql-bin.000005 |    31447 |              |                  |                   |</div><div class="line">+------------------+----------+--------------+------------------+-------------------+</div><div class="line">1 row in set (0.00 sec)</div><div class="line">  注：执行完此步骤后不要再操作主服务器MYSQL，防止主服务器状态值变化</div></pre></td></tr></table></figure>
+<h1 id="配置从服务器Slave："><a href="#配置从服务器Slave：" class="headerlink" title="配置从服务器Slave："></a>配置从服务器Slave：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mysql&gt;change master to master_host=&apos;192.168.145.222&apos;,master_user=&apos;yangtest&apos;,master_password=&apos;yangtestpwd&apos;,</div><div class="line">      master_log_file=&apos;mysql-bin.000005&apos;,master_log_pos=31447;   //注意不要断开，308数字前后无单引号。</div><div class="line"></div><div class="line">Mysql&gt;start slave;    //启动从服务器复制功能</div></pre></td></tr></table></figure>
+<h1 id="检查从服务器复制功能状态："><a href="#检查从服务器复制功能状态：" class="headerlink" title="检查从服务器复制功能状态："></a>检查从服务器复制功能状态：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">mysql&gt; show slave status</div><div class="line"></div><div class="line">*************************** 1. row ***************************</div><div class="line"></div><div class="line">           Slave_IO_State: Waiting for master to send event</div><div class="line">           Master_Host: 192.168.2.222  //主服务器地址</div><div class="line">           Master_User: mysync   //授权帐户名，尽量避免使用root</div><div class="line">           Master_Port: 3306    //数据库端口，部分版本没有此行</div><div class="line">           Connect_Retry: 60</div><div class="line">           Master_Log_File: mysql-bin.000004</div><div class="line">           Read_Master_Log_Pos: 600     //#同步读取二进制日志的位置，大于等于Exec_Master_Log_Pos</div><div class="line">           Relay_Log_File: ddte-relay-bin.000003</div><div class="line">           Relay_Log_Pos: 251</div><div class="line">           Relay_Master_Log_File: mysql-bin.000004</div><div class="line">           Slave_IO_Running: Yes    //此状态必须YES</div><div class="line">           Slave_SQL_Running: Yes     //此状态必须YES</div><div class="line">                 ......</div></pre></td></tr></table></figure>
+<p>注：Slave_IO及Slave_SQL进程必须正常运行，即YES状态，否则都是错误的状态(如：其中一个NO均属错误)。</p>
+<p>以上操作过程，主从服务器配置完成。</p>
+<h1 id="配置Amoeba"><a href="#配置Amoeba" class="headerlink" title="配置Amoeba"></a>配置Amoeba</h1><p>dbServers.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;dbServer name=&quot;abstractServer&quot; abstractive=&quot;true&quot;&gt;</div><div class="line">		&lt;factoryConfig class=&quot;com.meidusa.amoeba.mysql.net.MysqlServerConnectionFactory&quot;&gt;</div><div class="line">			&lt;property name=&quot;connectionManager&quot;&gt;$&#123;defaultManager&#125;&lt;/property&gt;</div><div class="line">			&lt;property name=&quot;sendBufferSize&quot;&gt;64&lt;/property&gt;</div><div class="line">			&lt;property name=&quot;receiveBufferSize&quot;&gt;128&lt;/property&gt;</div><div class="line">				</div><div class="line">			&lt;!-- mysql port --&gt;</div><div class="line">			&lt;property name=&quot;port&quot;&gt;3306&lt;/property&gt;</div><div class="line">			</div><div class="line">			&lt;!-- mysql schema --&gt;</div><div class="line">			&lt;property name=&quot;schema&quot;&gt;test&lt;/property&gt;</div><div class="line">			</div><div class="line">			&lt;!-- mysql user --&gt;</div><div class="line">			&lt;property name=&quot;user&quot;&gt;root&lt;/property&gt;</div><div class="line">			</div><div class="line">			&lt;property name=&quot;password&quot;&gt;root&lt;/property&gt;</div><div class="line">		&lt;/factoryConfig&gt;</div><div class="line"></div><div class="line">	&lt;/dbServer&gt;</div><div class="line"></div><div class="line">	&lt;dbServer name=&quot;Master&quot;  parent=&quot;abstractServer&quot;&gt;</div><div class="line">		&lt;factoryConfig&gt;</div><div class="line">			&lt;!-- mysql ip --&gt;</div><div class="line">			&lt;property name=&quot;ipAddress&quot;&gt;192.168.13.172&lt;/property&gt;</div><div class="line">		&lt;/factoryConfig&gt;</div><div class="line">	&lt;/dbServer&gt;</div><div class="line">	</div><div class="line">	&lt;dbServer name=&quot;slave1&quot;  parent=&quot;abstractServer&quot;&gt;</div><div class="line">		&lt;factoryConfig&gt;</div><div class="line">			&lt;!-- mysql ip --&gt;</div><div class="line">			&lt;property name=&quot;ipAddress&quot;&gt;192.168.13.168&lt;/property&gt;</div><div class="line">		&lt;/factoryConfig&gt;</div><div class="line">	&lt;/dbServer&gt;</div><div class="line">	</div><div class="line">	&lt;dbServer name=&quot;slaves&quot; virtual=&quot;true&quot;&gt;</div><div class="line">		&lt;poolConfig class=&quot;com.meidusa.amoeba.server.MultipleServerPool&quot;&gt;</div><div class="line">			&lt;!-- Load balancing strategy: 1=ROUNDROBIN , 2=WEIGHTBASED , 3=HA--&gt;</div><div class="line">			&lt;property name=&quot;loadbalance&quot;&gt;1&lt;/property&gt;</div><div class="line">			</div><div class="line">			&lt;!-- Separated by commas,such as: server1,server2,server1 --&gt;</div><div class="line">			&lt;property name=&quot;poolNames&quot;&gt;slave1&lt;/property&gt;</div><div class="line">		&lt;/poolConfig&gt;</div><div class="line">	&lt;/dbServer&gt;</div></pre></td></tr></table></figure></p>
+<p>amoeba.xml<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">&lt;proxy&gt;</div><div class="line">		&lt;!-- service class must implements com.meidusa.amoeba.service.Service --&gt;</div><div class="line">		&lt;service name=&quot;Amoeba for Mysql&quot; class=&quot;com.meidusa.amoeba.mysql.server.MySQLService&quot;&gt;</div><div class="line">			&lt;!-- port --&gt;</div><div class="line">			&lt;property name=&quot;port&quot;&gt;8066&lt;/property&gt;</div><div class="line">			</div><div class="line">			&lt;property name=&quot;authenticateProvider&quot;&gt;</div><div class="line">				&lt;bean class=&quot;com.meidusa.amoeba.mysql.server.MysqlClientAuthenticator&quot;&gt;</div><div class="line">					</div><div class="line">					&lt;property name=&quot;user&quot;&gt;root&lt;/property&gt;</div><div class="line">					</div><div class="line">					&lt;property name=&quot;password&quot;&gt;root&lt;/property&gt;</div><div class="line">					</div><div class="line">					&lt;property name=&quot;filter&quot;&gt;</div><div class="line">						&lt;bean class=&quot;com.meidusa.toolkit.net.authenticate.server.IPAccessController&quot;&gt;</div><div class="line">							&lt;property name=&quot;ipFile&quot;&gt;$&#123;amoeba.home&#125;/conf/access_list.conf&lt;/property&gt;</div><div class="line">						&lt;/bean&gt;</div><div class="line">					&lt;/property&gt;</div><div class="line">				&lt;/bean&gt;</div><div class="line">			&lt;/property&gt;</div><div class="line">			</div><div class="line">		&lt;/service&gt;</div><div class="line">		</div><div class="line">	&lt;/proxy&gt;</div><div class="line">	&lt;queryRouter class=&quot;com.meidusa.amoeba.mysql.parser.MysqlQueryRouter&quot;&gt;</div><div class="line">		&lt;property name=&quot;ruleLoader&quot;&gt;</div><div class="line">			&lt;bean class=&quot;com.meidusa.amoeba.route.TableRuleFileLoader&quot;&gt;</div><div class="line">				&lt;property name=&quot;ruleFile&quot;&gt;$&#123;amoeba.home&#125;/conf/rule.xml&lt;/property&gt;</div><div class="line">				&lt;property name=&quot;functionFile&quot;&gt;$&#123;amoeba.home&#125;/conf/ruleFunctionMap.xml&lt;/property&gt;</div><div class="line">			&lt;/bean&gt;</div><div class="line">		&lt;/property&gt;</div><div class="line">		&lt;property name=&quot;sqlFunctionFile&quot;&gt;$&#123;amoeba.home&#125;/conf/functionMap.xml&lt;/property&gt;</div><div class="line">		&lt;property name=&quot;LRUMapSize&quot;&gt;1500&lt;/property&gt;</div><div class="line">		&lt;property name=&quot;defaultPool&quot;&gt;Master&lt;/property&gt;</div><div class="line">		</div><div class="line">		</div><div class="line">		&lt;property name=&quot;writePool&quot;&gt;Master&lt;/property&gt;</div><div class="line">		&lt;property name=&quot;readPool&quot;&gt;slaves&lt;/property&gt;</div><div class="line">		</div><div class="line">		&lt;property name=&quot;needParse&quot;&gt;true&lt;/property&gt;</div><div class="line">	&lt;/queryRouter&gt;</div></pre></td></tr></table></figure></p>
+<p>配置结束，即可使用了。</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag">#MySQL</a>
+          
+            <a href="/tags/Amoeba/" rel="tag">#Amoeba</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Maven-The-Complete-Reference-一/" rel="next" title="Maven: The Complete Reference(一)">
+                <i class="fa fa-chevron-left"></i> Maven: The Complete Reference(一)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/me.jpg"
+               alt="杨思恒" />
+          <p class="site-author-name" itemprop="name">杨思恒</p>
+          <p class="site-description motion-element" itemprop="description">我思，故我在！</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/yangsiheng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/yangsiheng" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Segmentfault
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原理"><span class="nav-number">1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现MySQL主从复制需要进行的配置："><span class="nav-number">2.</span> <span class="nav-text">实现MySQL主从复制需要进行的配置：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#主从服务器准备："><span class="nav-number">3.</span> <span class="nav-text">主从服务器准备：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改主服务器master"><span class="nav-number">4.</span> <span class="nav-text">修改主服务器master:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改从服务器slave"><span class="nav-number">5.</span> <span class="nav-text">修改从服务器slave:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重启两台服务器的mysql"><span class="nav-number">6.</span> <span class="nav-text">重启两台服务器的mysql</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在主服务器上建立帐户并授权slave"><span class="nav-number">7.</span> <span class="nav-text">在主服务器上建立帐户并授权slave:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#登录主服务器的mysql，查询master的状态"><span class="nav-number">8.</span> <span class="nav-text">登录主服务器的mysql，查询master的状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置从服务器Slave："><span class="nav-number">9.</span> <span class="nav-text">配置从服务器Slave：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#检查从服务器复制功能状态："><span class="nav-number">10.</span> <span class="nav-text">检查从服务器复制功能状态：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置Amoeba"><span class="nav-number">11.</span> <span class="nav-text">配置Amoeba</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">杨思恒</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
