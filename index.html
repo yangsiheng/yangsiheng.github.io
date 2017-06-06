@@ -248,6 +248,123 @@
             
               
                 
+                <a class="post-title-link" href="/2017/06/06/Spring-MVC-简介/" itemprop="url">
+                  Spring MVC 简介
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-06-06T11:37:28+08:00" content="2017-06-06">
+              2017-06-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index">
+                    <span itemprop="name">Diary</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<h1 id="什么是-Spring-MVC"><a href="#什么是-Spring-MVC" class="headerlink" title="什么是 Spring MVC"></a>什么是 Spring MVC</h1><p>Spring MVC 属于 SpringFrameWork 的后续产品，已经融合在 Spring Web Flow 里面，是一个强大灵活的 Web 框架。Spring MVC 提供了一个 DispatcherServlet 作为前端控制器来分配请求。通过策略接口，Spring 框架是高度可配置的。Spring MVC 还包含多种视图技术，如 Java Server Pages（JSP）、Velocity、Tiles、iText 和 POI 等。Spring MVC 分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。</p>
+<p>Spring MVC 框架主要由 DispatcherServlet、处理器映射器、处理器适配器、处理器(控制器)、视图解析器、视图组成。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/06/06/Spring-MVC-简介/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/06/05/TCP-IP-简单介绍/" itemprop="url">
                   TCP/IP 简单介绍
                 </a>
@@ -310,28 +427,17 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>　</p>
 <h1 id="TCP-IP-简单介绍"><a href="#TCP-IP-简单介绍" class="headerlink" title="TCP/IP 简单介绍"></a>TCP/IP 简单介绍</h1><p>TCP/IP(Transmission Control Protocol/Internet Protocol)是传输控制协议和网络协议的简称，它定义了电子设备如何连入因特网，以及数据如何在它们之间传输的标准。<br>TCP/IP不是一个协议，而是一个协议族的统称，里面包含了IP协议、ICMP协议、TCP协议、以及http、ftp、pop3协议等。网络中的计算机都采用这套协议进行互联。</p>
 <h1 id="网络协议栈架构"><a href="#网络协议栈架构" class="headerlink" title="网络协议栈架构"></a>网络协议栈架构</h1><p>TCP/IP分为4层，每层承担的任务不一样，各层的协议的工作方式也不一样，每层封装上层的方式也不一样</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">1. 应用层：应用程序通过这一层访问网络，常见FTP、HTTP、DNS和TELNET协议；</div><div class="line">2. 传输层：TCP协议和UDP协议</div><div class="line">3. 网络层：IP协议，ARP、RARP协议、ICMP协议等</div><div class="line">4. 网络接口层（链路层）：是TCP/IP协议的基层，负责数据帧的发送和接收</div></pre></td></tr></table></figure>
-<blockquote>
-<p>　</p>
-<h1 id="封装和分用"><a href="#封装和分用" class="headerlink" title="封装和分用"></a>封装和分用</h1><p>封装：当应用程序发送数据的时候，数据在协议层次当中从顶向下通过每一层，每一层都会对数据增加一些首部或尾部信息，这样的信息称之为协议数据单元（Protocol Data Unit,缩写为PDU），在分层协议系统里，在指定的协议层上传送的数据单元，包含了该层的协议控制信息和用户信息。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- 物理层（一层）PDU指数据位（Bit)</div><div class="line">- 数据链路层（二层）PDU指数据帧（Frame）</div><div class="line">- 网络层（三层）PDU指数据包（Packet）</div><div class="line">- 传输层（四层）PDU指数据段（Segment）</div><div class="line">- 第五层以上为数据（data)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>　</p>
-<h1 id="RFC"><a href="#RFC" class="headerlink" title="RFC"></a>RFC</h1><p>RFC(Request for Comment)文档是所有以太网协议的正式标准，并在其官网上发布，由IETF标准协会制定。</p>
-</blockquote>
-<p>参考资料：</p>
-<ol>
-<li><a href="https://www.shiyanlou.com/courses/98/labs/448/document" target="_blank" rel="external">https://www.shiyanlou.com/courses/98/labs/448/document</a></li>
-</ol>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/06/05/TCP-IP-简单介绍/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1298,124 +1404,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/10/09/nls-database-parameters初探/" itemprop="url">
-                  nls_database_parameters初探
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-09T15:31:33+08:00" content="2016-10-09">
-              2016-10-09
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><br></p>
-<blockquote>
-<p>nls_database_parameters是PROPS$的一个视图<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">select * from nls_database_parameters;</div><div class="line">SELECT * FROM PROPS$;</div></pre></td></tr></table></figure></p>
-<p>修改nls_database_parameters系统配置(注意：此处要以sys,scott等超级管理员登陆，否则没权限)<br>update props$ set value$=’ZHS16GBK’ where name=’NLS_CHARACTERSET’<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/10/09/nls-database-parameters初探/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1461,7 +1449,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1478,7 +1466,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
