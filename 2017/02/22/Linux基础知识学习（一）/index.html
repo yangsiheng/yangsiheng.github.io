@@ -85,12 +85,14 @@
 
 
 <meta name="description" content="1、终端本质上是对应着 Linux 上的 /dev/tty 设备，Linux 的多用户登陆就是通过不同的 /dev/tty 设备完成的，Linux 默认提供了 6 个纯命令行界面的 “terminal”（准确的说这里应该是 6 个 virtual consoles）来让用户登录，在物理机系统上你可以通过使用[Ctrl]+[Alt]+[F1]～[F6]进行切换，当你切换到其中一个终端后想要切换回图">
+<meta name="keywords" content="笔记,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux基础知识学习（一）">
 <meta property="og:url" content="http://yoursite.com/2017/02/22/Linux基础知识学习（一）/index.html">
 <meta property="og:site_name" content="杨思恒的博客">
 <meta property="og:description" content="1、终端本质上是对应着 Linux 上的 /dev/tty 设备，Linux 的多用户登陆就是通过不同的 /dev/tty 设备完成的，Linux 默认提供了 6 个纯命令行界面的 “terminal”（准确的说这里应该是 6 个 virtual consoles）来让用户登录，在物理机系统上你可以通过使用[Ctrl]+[Alt]+[F1]～[F6]进行切换，当你切换到其中一个终端后想要切换回图">
-<meta property="og:updated_time" content="2017-02-22T07:34:14.620Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-22T07:34:14.621Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux基础知识学习（一）">
 <meta name="twitter:description" content="1、终端本质上是对应着 Linux 上的 /dev/tty 设备，Linux 的多用户登陆就是通过不同的 /dev/tty 设备完成的，Linux 默认提供了 6 个纯命令行界面的 “terminal”（准确的说这里应该是 6 个 virtual consoles）来让用户登录，在物理机系统上你可以通过使用[Ctrl]+[Alt]+[F1]～[F6]进行切换，当你切换到其中一个终端后想要切换回图">
@@ -306,8 +308,8 @@
 
       
         <blockquote>
-<p>1、终端本质上是对应着 Linux 上的 /dev/tty 设备，Linux 的多用户登陆就是通过不同的 /dev/tty 设备完成的，Linux 默认提供了 6 个纯命令行界面的 “terminal”（准确的说这里应该是 6 个 virtual consoles）来让用户登录，在物理机系统上你可以通过使用[Ctrl]+[Alt]+[F1]～[F6]进行切换，当你切换到其中一个终端后想要切换回图形界面，你可以按下[Ctrl]+[Alt]+[F7]来完成。<br>2、使用Tab键来进行命令补全，Tab键一般键盘是在字母Q旁边，这个技巧给你带来的最大的好处就是当你忘记某个命令的全称时你可以只输入它的开头的一部分然后按下Tab键就可以得到提示或者帮助完成。 <a id="more"></a><br>3、其他一些常用快捷键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Ctrl+c键来强行终止当前程序</div><div class="line">Ctrl+d键盘输入结束或退出终端</div><div class="line">Ctrl+s暂停当前程序，暂停后按下任意键恢复运行</div><div class="line">Ctrl+z将当前程序放到后台运行，恢复到前台为命令fg</div><div class="line">Ctrl+a将光标移至输入行头，相当于Home键</div><div class="line">Ctrl+e将光标移至输入行末，相当于End键</div><div class="line">Ctrl+k删除从光标所在位置到行末</div><div class="line">Alt+Backspace向前删除一个单词</div><div class="line">Shift+PgUp将终端显示向上滚动</div><div class="line">Shift+PgDn将终端显示向下滚动</div></pre></td></tr></table></figure></p>
-<p>4、Shell 常用通配符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">*匹配 0 或多个字符</div><div class="line">?匹配任意一个字符</div><div class="line">[list]匹配 list 中的任意单一字符</div><div class="line">[!list]匹配 除list 中的任意单一字符以外的字符</div><div class="line">[c1-c2]匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]</div><div class="line">&#123;string1,string2,...&#125;匹配 sring1 或 string2 (或更多)其一字符串</div><div class="line">&#123;c1..c2&#125;匹配 c1-c2 中全部字符 如&#123;1..10&#125;</div></pre></td></tr></table></figure></p>
+<p>1、终端本质上是对应着 Linux 上的 /dev/tty 设备，Linux 的多用户登陆就是通过不同的 /dev/tty 设备完成的，Linux 默认提供了 6 个纯命令行界面的 “terminal”（准确的说这里应该是 6 个 virtual consoles）来让用户登录，在物理机系统上你可以通过使用[Ctrl]+[Alt]+[F1]～[F6]进行切换，当你切换到其中一个终端后想要切换回图形界面，你可以按下[Ctrl]+[Alt]+[F7]来完成。<br>2、使用Tab键来进行命令补全，Tab键一般键盘是在字母Q旁边，这个技巧给你带来的最大的好处就是当你忘记某个命令的全称时你可以只输入它的开头的一部分然后按下Tab键就可以得到提示或者帮助完成。 <a id="more"></a><br>3、其他一些常用快捷键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+c键来强行终止当前程序</span><br><span class="line">Ctrl+d键盘输入结束或退出终端</span><br><span class="line">Ctrl+s暂停当前程序，暂停后按下任意键恢复运行</span><br><span class="line">Ctrl+z将当前程序放到后台运行，恢复到前台为命令fg</span><br><span class="line">Ctrl+a将光标移至输入行头，相当于Home键</span><br><span class="line">Ctrl+e将光标移至输入行末，相当于End键</span><br><span class="line">Ctrl+k删除从光标所在位置到行末</span><br><span class="line">Alt+Backspace向前删除一个单词</span><br><span class="line">Shift+PgUp将终端显示向上滚动</span><br><span class="line">Shift+PgDn将终端显示向下滚动</span><br></pre></td></tr></table></figure></p>
+<p>4、Shell 常用通配符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">*匹配 0 或多个字符</span><br><span class="line">?匹配任意一个字符</span><br><span class="line">[list]匹配 list 中的任意单一字符</span><br><span class="line">[!list]匹配 除list 中的任意单一字符以外的字符</span><br><span class="line">[c1-c2]匹配 c1-c2 中的任意单一字符 如：[0-9] [a-z]</span><br><span class="line">&#123;string1,string2,...&#125;匹配 sring1 或 string2 (或更多)其一字符串</span><br><span class="line">&#123;c1..c2&#125;匹配 c1-c2 中全部字符 如&#123;1..10&#125;</span><br></pre></td></tr></table></figure></p>
 <p>5、在 Linux 环境中，如果你遇到困难，可以使用man 命令，它是Manual page的缩写。<br>通常 man 手册中的内容很多，你可能不太容易找到你想要的结果，不过幸运的是你可以在 man 中使用搜索，/&lt;你要搜索的关键字&gt;，此处进行查找的时候关键字要用括号括起来，要不不起作用，查找到后你可以使用n键切换到下一个关键字所在处，shift+n为上一个关键字所在处。使用Space(空格键)翻页，Enter(回车键)向下滚动一行，或者使用j,k（vim编辑器的移动键）进行向前向后滚动一行。按下h键为显示使用帮助(因为man使用less作为阅读器，实为less工具的帮助)，按下q退出。<br>6、想要获得更详细的帮助，你还可以使用info命令，不过通常使用man就足够了。如果你知道某个命令的作用，只是想快速查看一些它的某个具体参数的作用，那么你可以使用–help参数，大部分命令都会带有这个参数，如：ls –help;</p>
 </blockquote>
 
@@ -506,7 +508,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

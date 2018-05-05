@@ -85,12 +85,14 @@
 
 
 <meta name="description" content="计算机包括输入单元、输出单元、CPU内部控制单元、算数逻辑单元与主记忆体五大部分。目前世界上常见的CPU架构：精简指令集（RISC）与复杂指令集（CISC）系统。精简指令集(Reduced Instruction Set Computer, RISC)，常见的RISC 微指令集CPU 主要例如甲骨文(Oracle) 公司的SPARC 系列、 IBM 公司的Power Architecture (">
+<meta name="keywords" content="笔记,linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《鸟哥的私房菜》读书笔记（一）">
 <meta property="og:url" content="http://yoursite.com/2017/02/08/《鸟哥的私房菜》读书笔记（一）/index.html">
 <meta property="og:site_name" content="杨思恒的博客">
 <meta property="og:description" content="计算机包括输入单元、输出单元、CPU内部控制单元、算数逻辑单元与主记忆体五大部分。目前世界上常见的CPU架构：精简指令集（RISC）与复杂指令集（CISC）系统。精简指令集(Reduced Instruction Set Computer, RISC)，常见的RISC 微指令集CPU 主要例如甲骨文(Oracle) 公司的SPARC 系列、 IBM 公司的Power Architecture (">
-<meta property="og:updated_time" content="2017-02-08T04:00:23.813Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-02-08T04:00:23.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《鸟哥的私房菜》读书笔记（一）">
 <meta name="twitter:description" content="计算机包括输入单元、输出单元、CPU内部控制单元、算数逻辑单元与主记忆体五大部分。目前世界上常见的CPU架构：精简指令集（RISC）与复杂指令集（CISC）系统。精简指令集(Reduced Instruction Set Computer, RISC)，常见的RISC 微指令集CPU 主要例如甲骨文(Oracle) 公司的SPARC 系列、 IBM 公司的Power Architecture (">
@@ -306,7 +308,7 @@
 
       
         <blockquote>
-<p>计算机包括输入单元、输出单元、CPU内部控制单元、算数逻辑单元与主记忆体五大部分。<br>目前世界上常见的CPU架构：精简指令集（RISC）与复杂指令集（CISC）系统。<br>精简指令集(Reduced Instruction Set Computer, RISC)，常见的RISC 微指令集CPU 主要例如甲骨文(Oracle) 公司的SPARC 系列、 IBM 公司的Power Architecture (包括PowerPC) 系列、与安谋公司(ARM Holdings) 的ARM CPU 系列等。其中目前世界上使用范围最广的CPU可能就是ARM这种架构。<br>复杂指令集(Complex Instruction Set Computer, CISC)，常见的CISC微指令集CPU主要有AMD、Intel、VIA等的x86架构的CPU。 <a id="more"></a><br>最新的Intel/AMD的x86架构中，请查询出多媒体、虚拟化、省电功能各有哪些重要的微指令集？(仅供参考)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">多媒体微指令集：MMX, SSE, SSE2, SSE3, SSE4, AMD-3DNow!</div><div class="line">虚拟化微指令集：Intel-VT, AMD-SVM</div><div class="line">省电功能：Intel-SpeedStep, AMD-PowerNow!</div><div class="line">64/32位元相容技术：AMD-AMD64, Intel-EM64T</div></pre></td></tr></table></figure></p>
+<p>计算机包括输入单元、输出单元、CPU内部控制单元、算数逻辑单元与主记忆体五大部分。<br>目前世界上常见的CPU架构：精简指令集（RISC）与复杂指令集（CISC）系统。<br>精简指令集(Reduced Instruction Set Computer, RISC)，常见的RISC 微指令集CPU 主要例如甲骨文(Oracle) 公司的SPARC 系列、 IBM 公司的Power Architecture (包括PowerPC) 系列、与安谋公司(ARM Holdings) 的ARM CPU 系列等。其中目前世界上使用范围最广的CPU可能就是ARM这种架构。<br>复杂指令集(Complex Instruction Set Computer, CISC)，常见的CISC微指令集CPU主要有AMD、Intel、VIA等的x86架构的CPU。 <a id="more"></a><br>最新的Intel/AMD的x86架构中，请查询出多媒体、虚拟化、省电功能各有哪些重要的微指令集？(仅供参考)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">多媒体微指令集：MMX, SSE, SSE2, SSE3, SSE4, AMD-3DNow!</span><br><span class="line">虚拟化微指令集：Intel-VT, AMD-SVM</span><br><span class="line">省电功能：Intel-SpeedStep, AMD-PowerNow!</span><br><span class="line">64/32位元相容技术：AMD-AMD64, Intel-EM64T</span><br></pre></td></tr></table></figure></p>
 <p>早期的晶片组通常分为两个桥接器来控制各元件的沟通，分别是：(1)北桥：负责连结速度较快的CPU、主记忆体与显示卡界面等元件；(2)南桥：负责连接速度较慢的装置介面，包括硬碟、USB、网路卡等等。目前的主流架构中，大多将北桥记忆体控制器整合到CPU封装当中了。<br>BIOS(Basic Input Output System)是一套程式，这套程式是写死到主机板上面的一个记忆体晶片中，这个记忆体晶片在没有通电时也能够将资料记录下来，那就是唯读记忆体(Read Only Memory, ROM)。<br>CMOS主要的功能为记录主机板上面的重要参数，包括系统时间、CPU电压与频率、各项设备的I /O位址与IRQ等，由于这些资料的记录要花费电力，因此主机板上面才有电池。BIOS为写入到主机板上某一块flash或EEPROM的程式，他可以在开机的时候执行，以载入CMOS当中的参数，并尝试呼叫储存装置中的开机程式，进一步进入作业系统当中。<br>目前主流的外接卡界面大多为PCIe 界面，且最新为PCIe 3.0，单通道速度高达1GBytes/s</p>
 </blockquote>
 
@@ -505,7 +507,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

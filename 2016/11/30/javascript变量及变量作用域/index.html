@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。
-JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。">
+<meta name="description" content="变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。 JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。">
+<meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript变量及变量作用域">
 <meta property="og:url" content="http://yoursite.com/2016/11/30/javascript变量及变量作用域/index.html">
 <meta property="og:site_name" content="杨思恒的博客">
-<meta property="og:description" content="变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。
-JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。">
-<meta property="og:updated_time" content="2016-12-07T03:19:30.862Z">
+<meta property="og:description" content="变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。 JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-12-07T03:19:30.863Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="javascript变量及变量作用域">
-<meta name="twitter:description" content="变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。
-JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。">
+<meta name="twitter:description" content="变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。 JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。">
 
 
 
@@ -311,25 +310,25 @@ JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型
         <blockquote>
 <p>变量代表了系统的一个存储区域。所有的编程语言都提供了变量这个语言元素。变量用于存储数据，比如数值或字符串。变量有三个方面的特性：名称、类型以及变量的值。</p>
 <p>JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型。也就是说，在声明变量时不需要指定变量的类型，变量类型由赋值给变量的值所确定。JavaScript不能像Java和C++那样在声明变量的时候指定变量的数据类型。 <a id="more"></a> </p>
-<h1 id="typeof运算符"><a href="#typeof运算符" class="headerlink" title="typeof运算符"></a>typeof运算符</h1><p>如果需要查看变量的类型，可以使用typeof运算符来查看。typeof的使用方法有两种，这两种方法是等价的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">typeof operand </div><div class="line">typeof (operand)</div></pre></td></tr></table></figure></p>
+<h1 id="typeof运算符"><a href="#typeof运算符" class="headerlink" title="typeof运算符"></a>typeof运算符</h1><p>如果需要查看变量的类型，可以使用typeof运算符来查看。typeof的使用方法有两种，这两种方法是等价的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typeof operand </span><br><span class="line">typeof (operand)</span><br></pre></td></tr></table></figure></p>
 <p>在JavaScript中，常用的变量类型有：Number、String、Boolean、Array和Date。对于字符串类型，typeof返回string，数值类型的值返回number，布尔类型的值返回boolean，对象类型的值返回object，函数类型的值返回function。如果一个变量没有定义，那么typeof对这个变量操作的结果为undefined。</p>
 <h1 id="null和undefined类型"><a href="#null和undefined类型" class="headerlink" title="null和undefined类型"></a>null和undefined类型</h1><p>Null和Undefined也是JavaScript的数据类型。Null的取值为null，表示“没有值”。Null既不是0，也不是空字符串，而是JavaScript的一种对象类型。Null用于初始化变量，以避免产生错误，也用于清除变量的内容，从而释放于变量关联的内存空间。当把Null赋值给某个变量后，该变量就不再保存任何有效数据了。</p>
 <p>对于一个已经声明但为赋初值的变量来说，它的值为undefined，如果在程序中直接使用这个值，会导致程序出错。对于这样的变量，可以使用typeof来判断其类型，typeof返回的值将是字符串undefined。如果声明变量后，把null赋值给这个变量，那么这个变量的值为null，在程序中使用这个变量时将不会导致运行时错误。</p>
-<p>单词undefined不是JavaScript中的关键字，而是系统预定义的一个全局变量。null和undefined既有联系，又有一定的区别。当使用==运算符来判断这两个值是否相等的时候，得到的结果为相等。如果想区分判断null和undefined，应该使用测试一致性的运算符===。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">typeof(null);       //object</div><div class="line">typeof(undefined);  //undefined;</div><div class="line">null == undefined;  //true</div><div class="line">null === undefined; //false</div></pre></td></tr></table></figure></p>
+<p>单词undefined不是JavaScript中的关键字，而是系统预定义的一个全局变量。null和undefined既有联系，又有一定的区别。当使用==运算符来判断这两个值是否相等的时候，得到的结果为相等。如果想区分判断null和undefined，应该使用测试一致性的运算符===。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typeof(null);       //object</span><br><span class="line">typeof(undefined);  //undefined;</span><br><span class="line">null == undefined;  //true</span><br><span class="line">null === undefined; //false</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h1 id="变量的声明和变量的初始化"><a href="#变量的声明和变量的初始化" class="headerlink" title="变量的声明和变量的初始化"></a>变量的声明和变量的初始化</h1><blockquote>
 <p>变量在使用之前必须声明，这不仅是JavaScript的要求，也是一个好的编程习惯。JavaScript声明变量有两种方式：使用关键字var显示声明变量和使用赋值语句隐式的声明变量。</p>
 <p>在声明变量的同时，可以为变量指定一个值，这个过程称为变量的初始化。如果没有为变量赋初值，那么这个变量的值为undefined。</p>
-<p>变量声明语句的一般格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var variable_name = value;  //声明变量的同时初始化变量</div><div class="line">var variable_name;          //声明变量,但没有进行初始化</div><div class="line">variable_name;              //在为变量赋值的同时声明变量</div></pre></td></tr></table></figure></p>
+<p>变量声明语句的一般格式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var variable_name = value;  //声明变量的同时初始化变量</span><br><span class="line">var variable_name;          //声明变量,但没有进行初始化</span><br><span class="line">variable_name;              //在为变量赋值的同时声明变量</span><br></pre></td></tr></table></figure></p>
 </blockquote>
 <h1 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h1><blockquote>
 <p>变量的作用域指的是变量的作用范围或使用范围。JavaScript有两种变量：全局变量和局部变量。全局变量在整个页面中都可以使用（要在变量声明之后）；局部变量则只能在函数中使用，并且局部变量必须使用var关键字来声明。</p>
-<p>声明一个局部变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function fn1()&#123;</div><div class="line">  var a = 10; //声明一个局部变量,该变量的作用域为&lt;code&gt;fn1()&lt;/code&gt;函数</div><div class="line">  alert(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>当在函数内部没有使用var来声明变量的时候，这个变量就会作为全局变量来声明。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function fn2()&#123;</div><div class="line">  b = 10; //声明一个全部变量，该变量可以在&lt;code&gt;fn2()&lt;/code&gt;函数之后的所有地方使用</div><div class="line">  alert(b);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>声明一个局部变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn1()&#123;</span><br><span class="line">  var a = 10; //声明一个局部变量,该变量的作用域为&lt;code&gt;fn1()&lt;/code&gt;函数</span><br><span class="line">  alert(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当在函数内部没有使用var来声明变量的时候，这个变量就会作为全局变量来声明。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function fn2()&#123;</span><br><span class="line">  b = 10; //声明一个全部变量，该变量可以在&lt;code&gt;fn2()&lt;/code&gt;函数之后的所有地方使用</span><br><span class="line">  alert(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>最佳实践：在函数中定义的变量一定使用添加var来声明。</p>
 <p>另外需要注意的是，同名局部变量会在作用域内覆盖同名的全局变量，使用时要特别注意。</p>
 </blockquote>
-<p>转载文件：<a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201511012733.html" target="_blank" rel="external">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201511012733.html</a></p>
+<p>转载文件：<a href="http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201511012733.html" target="_blank" rel="noopener">http://www.htmleaf.com/ziliaoku/qianduanjiaocheng/201511012733.html</a></p>
 
       
     </div>
@@ -524,7 +523,7 @@ JavaScript是一种动态语言，对于JavaScript而言，它没有变量类型
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
