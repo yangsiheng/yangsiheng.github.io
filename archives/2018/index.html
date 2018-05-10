@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="oracle,笔记," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,18 +84,16 @@
 
 
 
-<meta name="description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from d">
-<meta name="keywords" content="oracle,笔记">
-<meta property="og:type" content="article">
-<meta property="og:title" content="20161008总结">
-<meta property="og:url" content="http://yoursite.com/2016/10/08/20161008总结/index.html">
+<meta name="description" content="我思，故我在！">
+<meta property="og:type" content="website">
+<meta property="og:title" content="杨思恒的博客">
+<meta property="og:url" content="http://yoursite.com/archives/2018/index.html">
 <meta property="og:site_name" content="杨思恒的博客">
-<meta property="og:description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from d">
+<meta property="og:description" content="我思，故我在！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-10-09T11:26:56.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="20161008总结">
-<meta name="twitter:description" content="在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。12SQL&amp;gt; select length(&amp;apos;星空学者&amp;apos;) from dual; SQL&amp;gt; select lengthb(&amp;apos;星空学者&amp;apos;) from d">
+<meta name="twitter:title" content="杨思恒的博客">
+<meta name="twitter:description" content="我思，故我在！">
 
 
 
@@ -116,9 +114,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/10/08/20161008总结/"/>
+  <link rel="canonical" href="http://yoursite.com/archives/2018/"/>
 
-  <title> 20161008总结 | 杨思恒的博客 </title>
+  <title> 归档 | 杨思恒的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -139,7 +137,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,147 +225,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
+
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 14 篇日志。 继续努力。
+    </span>
+
     
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                20161008总结
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T18:13:42+08:00" content="2016-10-08">
-              2016-10-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index">
-                    <span itemprop="name">Diary</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
-      
-        <p><br></p>
-<blockquote>
-<p>在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select length(&apos;星空学者&apos;) from dual; </span><br><span class="line">SQL&gt; select lengthb(&apos;星空学者&apos;) from dual;</span><br></pre></td></tr></table></figure></p>
-<p>第一个SQL得到4，第二个得到8。<br>在Oracle中得到长度的函数，除了上述两个还有lengthc,length2,length4这三个函数，其中lengthc返回的是unicode字符长度（unicode characters），length2返回的是Code units，length4返回的是Code points。<br>参考：<br>1.<a href="http://docs.oracle.com/cd/B19306_01/server.102/b14200/functions076.htm" target="_blank" rel="noopener">http://docs.oracle.com/cd/B19306_01/server.102/b14200/functions076.htm</a><br>2.<a href="http://www.dba-oracle.com/t_lengthb_lengthc_length2_length4.htm" target="_blank" rel="noopener">http://www.dba-oracle.com/t_lengthb_lengthc_length2_length4.htm</a></p>
-</blockquote>
-
-      
-    </div>
-
-    <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/oracle/" rel="tag">#oracle</a>
-          
-            <a href="/tags/笔记/" rel="tag">#笔记</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2018">2018</h2>
         </div>
       
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/09/nls-database-parameters初探/" rel="prev" title="nls_database_parameters初探">
-                nls_database_parameters初探 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
-      
-    </footer>
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2018/05/10/hello-world/" itemprop="url">
+              
+                <span itemprop="name">第一次博客之路</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-05-10T11:26:15+08:00"
+              content="2018-05-10" >
+          05-10
+        </time>
+      </div>
+
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -375,10 +292,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
@@ -398,17 +311,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/me.jpg"
@@ -478,17 +382,6 @@
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -592,9 +485,11 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   

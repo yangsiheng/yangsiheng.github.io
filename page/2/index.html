@@ -249,6 +249,126 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/23/JavaScript数据类型转换/" itemprop="url">
+                  JavaScript数据类型转换
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-23T16:14:56+08:00" content="2016-11-23">
+              2016-11-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index">
+                    <span itemprop="name">Diary</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>JavaScript是一种“弱”类型的语言，这就是说，程序中不需要十分关注变量中存储数据的类型。例如可以在一条语句中将一个数值赋值给变量x，在另一条语句中把一个字符串在赋值给同一个变量；也可以将数值与字符串进行比较，将字符串与布尔型数据进行比较。在变量赋值和表达式的计算过程中，JavaScript会根据需要自动完成数据类型的转换。在包括多种类型的混合表达式中，JavaScript必须决定如何处理这个表达式中的各种数据类型。</p>
+<p>除了需要将字符串类型转换为数值类型之外，有时候也需要将数值类型转换为字符串类型，或其它数据类型之间进行数据类型的转换。例如，某些对象方法要求一个活多个特定数据类型的的参数，为了正确的使用这些方法，就需要完成适当的数据类型转换工作。</p>
+<p>为了适应不同的情况，JavaScript提供了两种数据类型的转换方法：一种使将整个值从一种类型转换为另一种数据类型（称为基本数据类型转换），另一种方法是从一个值中提取另一种类型的值，并完成类型转换工作。完成后一张数据类型转换的方法有三个：parseInt()、ParseFloat()和eval()。</p>
+<h1 id="基本数据类型转换"><a href="#基本数据类型转换" class="headerlink" title="基本数据类型转换"></a>基本数据类型转换</h1><p>JavaScript提供了三个方法实现基本数据类型之间的转换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String()：将其他数据类型的值转换为字符串，例如：String(123)的值为&quot;123&quot;。</span><br><span class="line">Number()：将其他类型的值转换为数值类型的值，例如：Number(true)的值为1。</span><br><span class="line">Boolean()：将其他类型的值转换为布尔型的值，除了0、NaN、null、undefined、&quot;&quot;（空字符串）被转换为false之外，所有其他的值都被转换为true。</span><br></pre></td></tr></table></figure></p>
+<p>这三个方法实际上是同名对象的构造函数。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/23/JavaScript数据类型转换/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/10/JavaScript运算符介绍/" itemprop="url">
                   JavaScript运算符介绍
                 </a>
@@ -556,122 +676,6 @@
 <blockquote>
 <p>在oracle中，length()与lengthb()是有区别的，length求得是字符长度（Characters），lengthb求得是字节长度（Bytes）。可以根据此规矩用来判断是否是汉字。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SQL&gt; select length(&apos;星空学者&apos;) from dual; </span><br><span class="line">SQL&gt; select lengthb(&apos;星空学者&apos;) from dual;</span><br></pre></td></tr></table></figure></p>
 <p>第一个SQL得到4，第二个得到8。<br>在Oracle中得到长度的函数，除了上述两个还有lengthc,length2,length4这三个函数，其中lengthc返回的是unicode字符长度（unicode characters），length2返回的是Code units，length4返回的是Code points。<br>参考：<br>1.<a href="http://docs.oracle.com/cd/B19306_01/server.102/b14200/functions076.htm" target="_blank" rel="noopener">http://docs.oracle.com/cd/B19306_01/server.102/b14200/functions076.htm</a><br>2.<a href="http://www.dba-oracle.com/t_lengthb_lengthc_length2_length4.htm" target="_blank" rel="noopener">http://www.dba-oracle.com/t_lengthb_lengthc_length2_length4.htm</a></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/16/hello-world/" itemprop="url">
-                  第一次博客之路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-16T20:00:14+08:00" content="2016-08-16">
-              2016-08-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/心路历程/" itemprop="url" rel="index">
-                    <span itemprop="name">心路历程</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><br></p>
-<blockquote>
-<p>费了一番力气，终于搭建好了我的博客。希望以后能更好的和更多技术同行人交流，探讨。<br>子曰“学而不思则罔，思而不学则殆”，在信息大爆炸的今天，每个人无时无刻都在接收着大量的信息，对的错的都有。辨别信息，吸收有用的则成为区分人与人高低的关键，或许这就是博客对于我们技术工作者的好处，可以把接收到的知识思考、吸收、消化、运用。<br>路已经铺好，美好在远方，剩下的只有坚持和努力。加油！！大家共勉。</p>
 </blockquote>
 
           
